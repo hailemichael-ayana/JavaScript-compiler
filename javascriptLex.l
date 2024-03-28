@@ -27,7 +27,7 @@ array           \[[^\[\]]*\]
 {number}        { printf("Number: %s\n", yytext); }
 {double_string} { printf("String: %s\n", yytext); }
 {single_string} { printf("String: %s\n", yytext); }
-{comment}       { printf("Comment: %s\n", yytext); }
+{comment}       ;
 "("             { printf("Left Parenthesis\n"); }
 ")"             { printf("Right Parenthesis\n"); }
 "{"             { printf("Left Curly Brace\n"); }
