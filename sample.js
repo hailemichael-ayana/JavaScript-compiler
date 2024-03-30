@@ -1,17 +1,18 @@
-const greeting = "Hello, World!";
-const greg = 'Hello, World!';
-let count = 0;
-
-function increment() {
-    count++;
-    console.log("Count:", count);
-}
-
-let fruits = ['Apple', 'Banana', 'Orange'];
-
-for (let i = 0; i < fruits.length; i++) {
-    console.log("Fruit:", fruits[i]);
-}
-
-increment();
-increment();
+let x = 10;
+let y = 10;
+let z = 10;
+let xc = 10;
+let xer= 10;
+let xre = 10;
+let xwew = 10;
+let xfd = 10;
+let xe = 10;
+let xree = 10;
+let xgd = 10;
+let xw = 10;
+let xb = 10;
+let xrew = 10;
+let xgf = 10;
+let xgdr = 10;
+let xreer= 10;
+let xwwww = 10;

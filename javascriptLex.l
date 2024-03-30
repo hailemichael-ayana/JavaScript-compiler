@@ -1,5 +1,6 @@
 %{
 #include <stdio.h>
+#include "javascriptBison.tab.h"
 #include <stdlib.h>
 %}
 
@@ -18,50 +19,72 @@ array           \[[^\[\]]*\]
 
 %%
 
-"true"|"false"|"null"  { printf("Boolean Literal: %s\n", yytext); }
-"undefined"     { printf("Undefined Literal\n"); }
-"if"|"else"|"while"|"for"|"do"|"function"|"return"|"break"|"continue"|"switch"|"case"|"default"|"try"|"catch"|"finally"|"throw"|"typeof"|"instanceof"|"new"|"delete"|"in"|"with"|"class"|"extends"   { printf("Keyword: %s\n", yytext); }
-"var"|"let"|"const" {printf("Data type:%s\n",yytext);}
-{array}          { printf("Array \n"); }
-{identifier}    { printf("Identifier: %s\n", yytext); }
-{number}        { printf("Number: %s\n", yytext); }
-{double_string} { printf("String: %s\n", yytext); }
-{single_string} { printf("String: %s\n", yytext); }
+"true"|"false"|"null"  { return BOOLEAN_LITERAL; }
+"if" {return IF;}
+"else" {return ELSE;}
+"while" {return WHILE;}
+"function" {return FUNCTION;}
+"return" {return RETURN;}
+"break" {return BREAK;}
+"continue" {return CONTINUE;}
+"switch" {return SWITCH;}
+"case" {return CASE;}
+"default" {return DEFAULT;}
+"try" {return TRY;}
+"catch" {return CATCH;}
+"finally" {return FINALLY;}
+"throw" {return THROW;}
+"typeof" {return TYPEOF;}
+"instanceof" {return INSTANCEOF;}
+"new" {return NEW;}
+"delete" {return DELETE;}
+"in" {return IN;}
+"with" {return WITH;}
+"class" {return CLASS;}
+"extends" {return EXTENDS;}
+"var" {return VAR;}
+"let" {return LET;}
+"const" {return CONST;}
+{array}          { return ARRAY; }
+{identifier}    { return IDENTIFIER; }
+{number}        { return NUMBER; }
+{double_string} { return STRING; }
+{single_string} { return STRING; }
 {comment}       ;
-"("             { printf("Left Parenthesis\n"); }
-")"             { printf("Right Parenthesis\n"); }
-"{"             { printf("Left Curly Brace\n"); }
-"}"             { printf("Right Curly Brace\n"); }
-"["             { printf("Left Square Bracket\n"); }
-"]"             { printf("Right Square Bracket\n"); }
-";"             { printf("Semicolon\n"); }
-","             { printf("Comma\n"); }
-"."             { printf("Period\n"); }
-":"             { printf("Colon\n"); }
-"?"             { printf("Question Mark\n"); }
-"="             { printf("Assignment Operator\n"); }
-"==="           { printf("Strict Equal Operator\n"); }
-"!=="           { printf("Strict not Equal Operator\n"); }
-"=="            { printf("Equal Operator\n"); }
-"!="            { printf("not Equal Operator\n"); }
-{operator}      { printf("Operator: %s\n", yytext); }
-"=>>"|"<<="|"|="|"^="|"&="|">>="|">>>="|"+="|"-="|"*="|"/="|"%"|"<<"|">>"|"," { printf("Binary Operator: %s\n", yytext); }
-\/{double_string}\/    { printf("Regular Expression: %s\n", yytext); }
-`[^`]*`         { printf("Template Literal: %s\n", yytext); }
+"("             { return LEFT_PAREN; }
+")"             { return RIGHT_PAREN; }
+"{"             { return LEFT_CURLY; }
+"}"             { return RIGHT_PAREN; }
+"["             { return LEFT_SQUARE; }
+"]"             { return RIGHT_SQUARE; }
+";"             { return SEMICOLON; }
+","             { return COMMA; }
+"."             { return PERIOD; }
+":"             { return COLON; }
+"?"             { return QUESTION_MARK; }
+"="             { return ASSIGNMENT_OPERATOR; }
+"==="           { return STRICT_EQUAL; }
+"!=="           { return STRICT_NOT_EQUAL; }
+"=="            { return EQUAL; }
+"!="            { return NOT_EQUAL; }
+{operator}      { return OPERATOR; }
+"=>>"|"<<="|"|="|"^="|"&="|">>="|">>>="|"+="|"-="|"*="|"/="|"%"|"<<"|">>"|"," { return BINARY_OPERATOR; }
+\/{double_string}\/    { return REGEX_TEMPLATE_LITERAL; }
+`[^`]*`         { return TEMPLATE_LITERAL; }
 [ \t\n]         ; 
-.               { printf("other character: %s\n", yytext); }
+.               { return OTHER_CHARACTER; }
 
 %%
 
-int main(int argc, char *argv[]) {
+/* int main(int argc, char *argv[]) {
     if (argc != 2) {
-        printf("Usage: %s <input_file>\n", argv[0]);
+        return Usage: %s <input_file>\n", argv[0]);
         return 1;
     }
 
     FILE *input_file = fopen(argv[1], "r");
     if (!input_file) {
-        printf("Error: Cannot open input file '%s'\n", argv[1]);
+        return Error: Cannot open input file '%s'\n", argv[1]);
         return 1;
     }
 
@@ -71,4 +94,4 @@ int main(int argc, char *argv[]) {
 
     fclose(input_file);
     return 0;
-}
+} */
