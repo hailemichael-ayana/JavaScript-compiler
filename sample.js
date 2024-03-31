@@ -1,18 +1,15 @@
-let x = 10;
-let y = 10;
-let z = 10;
-let xc = 10;
-let xer= 10;
-let xre = 10;
-let xwew = 10;
-let xfd = 10;
-let xe = 10;
-let xree = 10;
-let xgd = 10;
-let xw = 10;
-let xb = 10;
-let xrew = 10;
-let xgf = 10;
-let xgdr = 10;
-let xreer= 10;
-let xwwww = 10;
+let fruit = "apple";
+
+switch (fruit) {
+  case "banana":
+    x=1
+    break;
+  case "apple":
+    x=1
+    break;
+  case "orange":
+    x=1
+    break;
+  default:
+    "I don't know the color of that fruit."
+}
